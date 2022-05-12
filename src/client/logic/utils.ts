@@ -33,3 +33,7 @@ export function guessMode(code: string) {
     return 'css'
   return 'javascript'
 }
+
+export function truncate(code = '', maxLine = 1000) {
+  return code.split('\n').slice(0, maxLine).join('\n')
+}

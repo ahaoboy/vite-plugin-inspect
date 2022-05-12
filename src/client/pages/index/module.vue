@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import { useRouteQuery } from '@vueuse/router'
-import { msToTime } from '../../logic/utils'
+import { msToTime, truncate } from '../../logic/utils'
 import { enableDiff, lineWrapping, onRefetch } from '../../logic'
 import { rpc } from '../../logic/rpc'
 
@@ -34,8 +34,8 @@ onRefetch.on(async() => {
 
 watch(id, () => refetch(), { immediate: true })
 
-const from = computed(() => data.value?.transforms[currentIndex.value - 1]?.result || '')
-const to = computed(() => data.value?.transforms[currentIndex.value]?.result || '')
+const from = computed(() => truncate(data.value?.transforms[currentIndex.value - 1]?.result || ''))
+const to = computed(() => truncate(data.value?.transforms[currentIndex.value]?.result || ''))
 </script>
 
 <template>
